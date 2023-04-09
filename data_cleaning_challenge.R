@@ -14,14 +14,14 @@ sum(!is.na(data_cleaning_challenge$X.1))
 # Same amount of NAs as rows
 # both columns are safe to ignore
 
-# selecting first 9 rows
+# selecting first 9 columns
 df <- data_cleaning_challenge %>% select(1:9)
 head(df)
 
 # check if the value first name: has any different names
 # Use '$' to turn the column into a vector
 # "str_sub" only works on atomic vectors
-df$Row.Type[df$Row.Type == "first name: Person"] %>% 
+df$Row.Type[str_detect(df$Row.Type, 'first name')] %>% 
   str_sub(13) %>%
   table() %>% 
   print()
