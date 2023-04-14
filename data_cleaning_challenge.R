@@ -41,6 +41,27 @@ View(df_yt)
 # Same number of rows and one less column because I do not have the iterate column
 
 # Solution per YT commentator tba ---------------------------------------------
+View(df)
+df_yc <- df %>% filter(Row.Type != "")
+View(df_yc)
 
+df_yc$first <- str_detect(df_yc$Row.Type, 'first name:')
+df_yc$first2 <- ifelse(df_yc$first == 1, str_sub(df_yc$Row.Type, 13), NA)
+df_yc$fill <- na.locf(df_yc$first2)
+
+# turn into a function 
+fill <- function(x, y, z){
+  col <- str_detect(x, y)
+  col <- ifelse(col == 1, str_sub(x, z), NA) %>%
+  na.locf(col)
+}
+
+First_Name <- fill(df_yc$Row.Type, 'first name:', 13) 
+Last_Name <- fill(df_yc$Iter.Number, 'last', 12)
+Date <- fill(df_yc$Power1, 'date', 7)
+
+yt_solution <- cbind(First_Name, Last_Name, Date, df_yc) %>%
+  filter(Speed1 != "", Row.Type != "Row Type")
+View(yt_solution)
 
 
