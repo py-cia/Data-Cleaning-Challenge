@@ -52,8 +52,8 @@ df_yc$fill <- na.locf(df_yc$first2)
 # turn into a function 
 fill <- function(x, y, z){
   col <- str_detect(x, y)
-  col <- ifelse(col == 1, str_sub(x, z), NA) %>%
-  na.locf(col)
+  ifelse(col == 1, str_sub(x, z), NA) %>%
+  na.locf()
 }
 
 First_Name <- fill(df_yc$Row.Type, 'first name:', 13) 
