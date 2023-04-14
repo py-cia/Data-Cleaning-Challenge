@@ -40,7 +40,7 @@ df_yt <- cbind(First_Name, Last_Name, Date, df_yt)
 View(df_yt)
 # Same number of rows and one less column because I do not have the iterate column
 
-# Solution per YT commentator tba ---------------------------------------------
+# Solution per YT commentator ---------------------------------------------
 View(df)
 df_yc <- df %>% filter(Row.Type != "")
 View(df_yc)
